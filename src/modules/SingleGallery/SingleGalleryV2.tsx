@@ -4,15 +4,31 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import Section from "@/common/Section/Section";
 import Footer from "@/common/Footer/Footer";
-import { ArtWorkDataPerYear } from "@/constants/ArtWorkData";
 import { useState } from "react";
 import PhotoViewer from "@/common/PhotoViewer/PhotoViewer";
 import Link from "next/link";
 import { ArrowBigLeftDash } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const SingleGalleryV2 = ({ slug }: { slug: string }) => {
-  const yearCollection = ArtWorkDataPerYear.find((art) => art.slug === slug);
+interface SingleGalleryV2Props {
+  slug: string;
+  artworkData: Array<{
+    title: string;
+    slug: string;
+    galleryImages?: any;
+    images: Array<{
+      id: number;
+      title: string;
+      dimensions: string;
+      medium: string;
+      ImageURL: string;
+      ImageURLThumbnail: string;
+    }>;
+  }>;
+}
+
+const SingleGalleryV2 = ({ slug, artworkData }: SingleGalleryV2Props) => {
+  const yearCollection = artworkData.find((art) => art.slug === slug);
   const [photoViewerOpen, setPhotoViewerOpen] = useState(false);
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
   const [currentPhotos, setCurrentPhotos] = useState<

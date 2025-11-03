@@ -1,0 +1,32 @@
+backend:
+  name: git-gateway
+  branch: main # Change to your default branch
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+# Enable local backend for development
+local_backend: true
+
+collections:
+  - name: "artwork"
+    label: "Artwork Collections"
+    folder: "content/artwork"
+    create: true
+    slug: "{{year}}"
+    identifier_field: year
+    fields:
+      - { label: "Year", name: "year", widget: "string" }
+      - { label: "Slug", name: "slug", widget: "string" }
+      - { label: "Gallery Image URL", name: "galleryImage", widget: "string", required: false }
+      - label: "Artworks"
+        name: "artworks"
+        widget: "list"
+        fields:
+          - { label: "ID", name: "id", widget: "number" }
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Dimensions", name: "dimensions", widget: "string" }
+          - { label: "Medium", name: "medium", widget: "string" }
+          - { label: "Cloudinary Image URL", name: "imageURL", widget: "string" }
+          - { label: "Cloudinary Thumbnail URL", name: "thumbnailURL", widget: "string", required: false }
+

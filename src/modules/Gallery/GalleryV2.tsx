@@ -1,7 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import BreadCrumb from "@/common/BreadCrumb";
 import Section from "@/common/Section/Section";
-import { ArtWorkDataPerYear } from "@/constants/ArtWorkData";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -10,7 +9,16 @@ import Footer from "@/common/Footer/Footer";
 import UpperFooter from "../Home/componentsV2/UpperFooter";
 import Logo from "@/common/Logo/Logo";
 
-const GalleryV2 = () => {
+interface GalleryV2Props {
+  artworkData: Array<{
+    title: string;
+    slug: string;
+    galleryImages?: any;
+    images: Array<any>;
+  }>;
+}
+
+const GalleryV2 = ({ artworkData }: GalleryV2Props) => {
   return (
     <>
       <Section className="sm:py-12 ">
@@ -28,7 +36,7 @@ const GalleryV2 = () => {
           </Link>
         </h2>
         <div className="flex flex-col gap-2 pt-10">
-          {ArtWorkDataPerYear.map((data) => (
+          {artworkData.map((data) => (
             <Link
               href={`/gallery/${data.slug}`}
               key={data.title}
