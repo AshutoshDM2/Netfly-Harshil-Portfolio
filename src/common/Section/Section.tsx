@@ -10,7 +10,7 @@ const Section: React.FC<SectionProps> = ({ children, className = "" }) => {
   return (
     <section
       className={cn(
-        "w-full max-w-screen-xl 2xl:max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8",
+        "w-full max-w-7xl 2xl:max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8",
         className
       )}>
       {children}
